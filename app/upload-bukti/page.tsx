@@ -149,11 +149,11 @@ export default function UploadBuktiPage() {
           console.warn('Webhook response not OK:', await webhookResponse.text())
         }
         
-        setUploadResult({
-          success: true,
-          message: "Bukti pembayaran berhasil diunggah dan dikirim!",
-          url: data.data.url
-        })
+        // Set flag bahwa upload berhasil
+        localStorage.setItem('uploadSuccess', 'true')
+        
+        // Redirect ke halaman thank you
+        router.push('/thank-you')
       } else {
         throw new Error(data.error?.message || "Upload gagal")
       }
