@@ -136,7 +136,23 @@ function PaymentGatewayView({
                 )}
 
                 {/* Konfirmasi Pembayaran Button */}
-                <Button onClick={() => window.location.href = "/upload-bukti"} variant="primary" className="w-full bg-primary text-primary-foreground">
+                <Button 
+                  onClick={() => {
+                    // Menyimpan data QRIS ke localStorage untuk diakses di halaman upload
+                    localStorage.setItem('qrisPayloadData', JSON.stringify({
+                      qrisEmvFinal: result.qrisEmvFinal,
+                      amount: amount,
+                      iat: result.iat,
+                      exp: result.exp,
+                      expIsoJakarta: result.expIsoJakarta,
+                      canonical: result.canonical,
+                      sig: result.sig,
+                    }));
+                    window.location.href = "/upload-bukti";
+                  }} 
+                  variant="primary" 
+                  className="w-full bg-primary text-primary-foreground"
+                >
                   <CheckCircle className="w-4 h-4 mr-2" />
                   Konfirmasi Pembayaran
                 </Button>

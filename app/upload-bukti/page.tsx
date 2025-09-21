@@ -111,9 +111,47 @@ export default function UploadBuktiPage() {
       const data = await response.json()
       
       if (data.success) {
+        // Mendapatkan data QRIS dari localStorage
+        const qrisDataString = localStorage.getItem('qrisPayloadData')
+        let qrisData = {}
+        
+        if (qrisDataString) {
+          try {
+            qrisData = JSON.parse(qrisDataString)
+          } catch (e) {
+            console.error('Error parsing QRIS data:', e)
+          }
+        }
+        
+        // Kirim data ke webhook
+        const webhookUrl = 'https://n8n-mwtojkfm.ap-southeast-1.clawcloudrun.com/webhook/pay'
+        
+        // Gabungkan data QRIS dengan URL gambar
+        const webhookData = {
+          ...qrisData,
+          imageUrl: data.data.url,
+          imageDeleteUrl: data.data.delete_url,
+          uploadTime: new Date().toISOString(),
+          fileName: file.name,
+          fileSize: file.size
+        }
+        
+        // Kirim data ke webhook
+        const webhookResponse = await fetch(webhookUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(webhookData)
+        })
+        
+        if (!webhookResponse.ok) {
+          console.warn('Webhook response not OK:', await webhookResponse.text())
+        }
+        
         setUploadResult({
           success: true,
-          message: "Bukti pembayaran berhasil diunggah!",
+          message: "Bukti pembayaran berhasil diunggah dan dikirim!",
           url: data.data.url
         })
       } else {
