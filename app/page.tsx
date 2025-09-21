@@ -135,10 +135,10 @@ function PaymentGatewayView({
                   </div>
                 )}
 
-                {/* Download Button */}
-                <Button onClick={downloadQRCode} variant="outline" className="w-full bg-transparent">
-                  <Download className="w-4 h-4 mr-2" />
-                  Download QR Code
+                {/* Konfirmasi Pembayaran Button */}
+                <Button onClick={() => window.location.href = "/upload-bukti"} variant="primary" className="w-full bg-primary text-primary-foreground">
+                  <CheckCircle className="w-4 h-4 mr-2" />
+                  Konfirmasi Pembayaran
                 </Button>
 
                 {/* Security Badge */}
