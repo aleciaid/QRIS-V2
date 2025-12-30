@@ -1,4 +1,4 @@
-// File: D:\Andi\project\qpay\app\api\config\route.ts
+// File: C:\xampp\htdocs\andi\QRIS-V2\app\api\config\route.ts
 import * as entry from '../../../../../app/api/config/route.js'
 import type { NextRequest } from 'next/server.js'
 

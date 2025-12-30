@@ -1,9 +1,0 @@
-{
-  "/_not-found/page": "/_not-found",
-  "/api/config/route": "/api/config",
-  "/api/decode-qris/route": "/api/decode-qris",
-  "/page": "/",
-  "/thank-you/page": "/thank-you",
-  "/upload-bukti/page": "/upload-bukti",
-  "/404/page": "/404"
-}

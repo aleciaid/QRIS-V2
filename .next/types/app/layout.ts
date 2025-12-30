@@ -1,4 +1,4 @@
-// File: D:\Andi\project\qpay\app\layout.tsx
+// File: C:\xampp\htdocs\andi\QRIS-V2\app\layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
